@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/solidbranch-frontend-tria'),
+      dir: require('path').join(__dirname, './coverage/frontend-trial-1'),
       subdir: '.',
       reporters: [
         { type: 'html' },

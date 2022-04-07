@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "solidbranch-frontend-tria": {
+    "frontend-trial-1": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/solidbranch-frontend-tria",
+            "outputPath": "dist/frontend-trial-1",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "solidbranch-frontend-tria:build:production"
+              "browserTarget": "frontend-trial-1:build:production"
             },
             "development": {
-              "browserTarget": "solidbranch-frontend-tria:build:development"
+              "browserTarget": "frontend-trial-1:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "solidbranch-frontend-tria:build"
+            "browserTarget": "frontend-trial-1:build"
           }
         },
         "test": {
@@ -102,5 +102,5 @@
       }
     }
   },
-  "defaultProject": "solidbranch-frontend-tria"
+  "defaultProject": "frontend-trial-1"
 }
