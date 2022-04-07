@@ -27,6 +27,6 @@ export class TransactionsService {
   constructor(private http: HttpClient) {}
 
   getTransactions() {
-    return this.http.get<Transactions>('/assets/transactions.json');
+    return this.http.get<Transactions>('assets/transactions.json');
   }
 }
