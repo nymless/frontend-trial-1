@@ -1,0 +1,13 @@
+<div class="summary-cards">
+  <div class="heading-card">
+    <app-heading-card [total]="total"></app-heading-card>
+  </div>
+
+  <div class="summary-card" *ngFor="let type of types">
+    <app-summary-card
+      [type]="type"
+      [total]="totalByTypes[type]"
+      [tabId]="tabIdByTypes[type]"
+    ></app-summary-card>
+  </div>
+</div>

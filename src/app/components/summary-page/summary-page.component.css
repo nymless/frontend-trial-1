@@ -1,0 +1,15 @@
+.summary-cards {
+  max-width: 516px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.heading-card {
+  flex: 1 1 100%;
+}
+
+.summary-card {
+  flex: 1 1 49%;
+}
