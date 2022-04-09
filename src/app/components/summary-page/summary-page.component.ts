@@ -5,8 +5,6 @@ import {
   TransactionsService,
 } from 'src/app/services/transactions.service';
 
-type Keys = 'Income' | 'Investments' | 'Outcome' | 'Loans';
-
 @Component({
   selector: 'app-summary-page',
   templateUrl: './summary-page.component.html',
@@ -15,7 +13,7 @@ type Keys = 'Income' | 'Investments' | 'Outcome' | 'Loans';
 export class SummaryPageComponent implements OnInit {
   types;
   total;
-  totalByTypes: { [key in Keys]: number };
+  totalByTypes;
   tabIdByTypes;
   private transactions$?: Observable<Transactions>;
   private subscription?: Subscription;
