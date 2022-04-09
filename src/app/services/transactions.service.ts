@@ -26,7 +26,27 @@ export interface Transactions {
 export class TransactionsService {
   constructor(private http: HttpClient) {}
 
-  getTransactions() {
+  getTransactions$() {
     return this.http.get<Transactions>('assets/transactions.json');
+  }
+
+  getTotal(transactions: Transactions) {
+    return transactions.total;
+  }
+
+  getTotalByTypes(transactions: Transactions) {
+    const byTypes = {
+      Income: 0,
+      Investments: 0,
+      Outcome: 0,
+      Loans: 0,
+    };
+    transactions.data.forEach((transaction) => {
+      if (transaction.type === 'income') byTypes.Income += 1;
+      if (transaction.type === 'investment') byTypes.Investments += 1;
+      if (transaction.type === 'outcome') byTypes.Outcome += 1;
+      if (transaction.type === 'loan') byTypes.Loans += 1;
+    });
+    return byTypes;
   }
 }

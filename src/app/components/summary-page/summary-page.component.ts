@@ -17,9 +17,8 @@ export class SummaryPageComponent implements OnInit {
   total;
   totalByTypes: { [key in Keys]: number };
   tabIdByTypes;
-  private transactions$: Observable<Transactions> | undefined;
-  private subs: Subscription | undefined;
-  transactions: Transactions | undefined;
+  private transactions$?: Observable<Transactions>;
+  private subscription?: Subscription;
 
   constructor(private service: TransactionsService) {
     this.types = ['Income', 'Investments', 'Outcome', 'Loans'] as const;
@@ -39,37 +38,16 @@ export class SummaryPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.transactions$ = this.service.getTransactions();
-    this.subs = this.transactions$.subscribe((transactions) => {
-      this.transactions = transactions;
-      this.total = this.getTotal(this.transactions);
-      this.totalByTypes = this.getByTypes(this.transactions);
+    this.transactions$ = this.service.getTransactions$();
+    this.subscription = this.transactions$.subscribe((transactions) => {
+      this.total = this.service.getTotal(transactions);
+      this.totalByTypes = this.service.getTotalByTypes(transactions);
     });
   }
 
   ngOnDestroy(): void {
-    if (this.subs) {
-      this.subs.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
-  }
-
-  getTotal(transactions: Transactions) {
-    return transactions.total;
-  }
-
-  getByTypes(transactions: Transactions) {
-    const byTypes = {
-      Income: 0,
-      Investments: 0,
-      Outcome: 0,
-      Loans: 0,
-    };
-    transactions.data.forEach((transaction) => {
-      if (transaction.type === 'income') byTypes.Income += 1;
-      if (transaction.type === 'investment') byTypes.Investments += 1;
-      if (transaction.type === 'outcome') byTypes.Outcome += 1;
-      if (transaction.type === 'loan') byTypes.Loans += 1;
-    });
-    return byTypes;
   }
 }
