@@ -8,6 +8,7 @@ import { ListPageComponent } from './components/list-page/list-page.component';
 import { SummaryPageComponent } from './components/summary-page/summary-page.component';
 import { SummaryCardComponent } from './components/summary-page/summary-card/summary-card.component';
 import { HeadingCardComponent } from './components/summary-page/heading-card/heading-card.component';
+import { TableComponent } from './components/list-page/table/table.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HeadingCardComponent } from './components/summary-page/heading-card/hea
     SummaryPageComponent,
     SummaryCardComponent,
     HeadingCardComponent,
+    TableComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

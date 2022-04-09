@@ -6,9 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./summary-card.component.css'],
 })
 export class SummaryCardComponent {
-  @Input() type: string | undefined;
-  @Input() total: number | undefined;
-  @Input() tabId: number | undefined;
+  @Input() type?: string;
+  @Input() total?: number;
+  @Input() tabId?: number;
 
   constructor() {}
 }

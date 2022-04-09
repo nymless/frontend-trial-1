@@ -12,14 +12,19 @@ import {
 })
 export class SummaryPageComponent implements OnInit {
   types;
+  tabIdByTypes;
   total;
   totalByTypes;
-  tabIdByTypes;
-  private transactions$?: Observable<Transactions>;
   private subscription?: Subscription;
 
   constructor(private service: TransactionsService) {
     this.types = ['Income', 'Investments', 'Outcome', 'Loans'] as const;
+    this.tabIdByTypes = {
+      Income: 0,
+      Outcome: 1,
+      Loans: 2,
+      Investments: 3,
+    } as const;
     this.total = 0;
     this.totalByTypes = {
       Income: 0,
@@ -27,20 +32,15 @@ export class SummaryPageComponent implements OnInit {
       Outcome: 0,
       Loans: 0,
     };
-    this.tabIdByTypes = {
-      Income: 0,
-      Investments: 3,
-      Outcome: 1,
-      Loans: 2,
-    } as const;
   }
 
   ngOnInit(): void {
-    this.transactions$ = this.service.getTransactions$();
-    this.subscription = this.transactions$.subscribe((transactions) => {
-      this.total = this.service.getTotal(transactions);
-      this.totalByTypes = this.service.getTotalByTypes(transactions);
-    });
+    this.subscription = this.service
+      .getTransactions$()
+      .subscribe((transactions) => {
+        this.total = this.service.getTotal(transactions);
+        this.totalByTypes = this.service.getTotalByTypes(transactions);
+      });
   }
 
   ngOnDestroy(): void {

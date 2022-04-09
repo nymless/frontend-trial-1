@@ -1,14 +1,27 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" [routerLink]="['/navigator?tab=0']">Income</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['/navigator?tab=1']">Outcome</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['/navigator?tab=2']">Loans</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" [routerLink]="['/navigator?tab=3']">Investment</a>
-  </li>
-</ul>
+<div class="list-page-container border">
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let type of types">
+      <a
+        class="nav-link"
+        [ngClass]="{ active: activeTab === tabIdByTypes[type] }"
+        [routerLink]="['/navigator']"
+        [queryParams]="{ tab: tabIdByTypes[type] }"
+        (click)="onClick(tabIdByTypes[type])"
+      >
+        {{ type }}
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div
+      *ngFor="let type of types"
+      class="tab-pane fade"
+      [ngClass]="{ 'show active': activeTab === tabIdByTypes[type] }"
+      id="{{ type.toLowerCase() }}"
+      role="tabpanel"
+      [attr.aria-labelledby]="type.toLowerCase() + '-tab'"
+    >
+      <app-table *ngIf="lists" [list]="lists[type]"></app-table>
+    </div>
+  </div>
+</div>

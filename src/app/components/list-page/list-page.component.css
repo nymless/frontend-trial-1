@@ -1,0 +1,15 @@
+.list-page-container {
+  max-width: 516px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.nav-item {
+  flex: 1 1 auto;
+}
+
+.tab-content {
+  max-height: 516px;
+  padding: 2em 1em;
+  overflow-y: auto;
+}

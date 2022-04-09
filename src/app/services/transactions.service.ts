@@ -20,6 +20,15 @@ export interface Transactions {
   data: Transaction[];
 }
 
+export type List = { name: string; amount: number }[];
+
+export interface Lists {
+  Income: List;
+  Investments: List;
+  Outcome: List;
+  Loans: List;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -35,7 +44,7 @@ export class TransactionsService {
   }
 
   getTotalByTypes(transactions: Transactions) {
-    const byTypes = {
+    let byTypes = {
       Income: 0,
       Investments: 0,
       Outcome: 0,
@@ -48,5 +57,24 @@ export class TransactionsService {
       if (transaction.type === 'loan') byTypes.Loans += 1;
     });
     return byTypes;
+  }
+
+  getListByTypes(transactions: Transactions) {
+    let lists: Lists = {
+      Income: [],
+      Investments: [],
+      Outcome: [],
+      Loans: [],
+    };
+    transactions.data.forEach((transaction) => {
+      let name = transaction.name.first + ' ' + transaction.name.last;
+      let amount = transaction.amount;
+      let addPerson = (arr: List) => arr.push({ name, amount });
+      if (transaction.type === 'income') addPerson(lists.Income);
+      if (transaction.type === 'investment') addPerson(lists.Investments);
+      if (transaction.type === 'outcome') addPerson(lists.Outcome);
+      if (transaction.type === 'loan') addPerson(lists.Loans);
+    });
+    return lists;
   }
 }

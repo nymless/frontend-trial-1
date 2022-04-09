@@ -1,0 +1,14 @@
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of list">
+      <td>{{ person.name }}</td>
+      <td>{{ person.amount }}</td>
+    </tr>
+  </tbody>
+</table>

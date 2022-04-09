@@ -7,7 +7,7 @@ import { Transactions } from 'src/app/services/transactions.service';
   styleUrls: ['./heading-card.component.css'],
 })
 export class HeadingCardComponent {
-  @Input() total: number | undefined;
+  @Input() total?: number;
 
   constructor() {}
 }
